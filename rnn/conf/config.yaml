@@ -1,0 +1,58 @@
+hydra:
+  run:
+    dir: ${outputDir}
+  sweep:
+    dir: ${outputDir}
+    subdir: ${hydra.job.override_dirname}
+  job:
+    config:
+      override_dirname:
+        exclude_keys:
+          - outputDir
+          - datasetPath
+          - wandb.enabled
+          - wandb.setup.project
+          - wandb.setup.entity
+          - wandb.setup.group
+
+defaults:
+  - wandb: defaults
+          
+outputDir: /home/cheny/chen/falcon/h2_rnn/out
+datasetPath: /home/cheny/chen/falcon/h2_rnn/data_local_no_overlap
+
+seed: 0
+batchSize: 48
+nSteps: 20000
+
+whiteNoiseSD: 1.2
+constantOffsetSD: 0.6
+gaussianSmoothWidth: 2.0
+
+nUnits: 512
+nLayers: 5
+nInputFeatures: 192
+nClasses: 31
+dropout: 0.4
+strideLen: 5
+kernelLen: 6
+bidirectional: True
+
+optimizer_type: Adam
+use_scheduler: True
+lrStart: 0.02
+lrEnd: 0
+l2_decay: 1e-5
+gradClipNorm: 10
+
+momentum: 0.9
+nesterov: False
+stepSize: 4000
+gamma: 0.1
+
+numWorkers: 10
+
+# lightning
+accelerator: gpu
+devices: -1
+precision: 32

@@ -1,0 +1,68 @@
+hydra:
+  run:
+    dir: ${outputDir}
+  sweep:
+    dir: ${outputDir}
+    subdir: ${hydra.job.override_dirname}
+  job:
+    config:
+      override_dirname:
+        exclude_keys:
+          - outputDir
+          - datasetPath
+          - wandb.enabled
+          - wandb.setup.project
+          - wandb.setup.entity
+          - wandb.setup.group
+
+defaults:
+  - wandb: defaults
+          
+outputDir: /home/cheny/chen/falcon/h2_meta_aligner/out
+datasetPath: /home/cheny/chen/falcon/h2_meta_aligner/data/data_remote
+
+pretrain: /home/cheny/chen/falcon/h2_meta_aligner/pretrain_models/run_20250908-101130/modelWeights
+
+seed: 0
+nSteps: 100000
+inner_steps: 3
+
+whiteNoiseSD: 1.2
+constantOffsetSD: 0.6
+gaussianSmoothWidth: 2.0
+
+nUnits: 512
+nLayers: 5
+nInputFeatures: 192
+nClasses: 31
+dropout: 0.4
+strideLen: 5
+kernelLen: 6
+bidirectional: True
+
+n_task: 3
+k_tr: 5
+k_ts: 5
+k_val_fs: 3
+inner_lr: 0.005
+outer_lr: 0.002
+first_order: True
+
+single_layer: True
+align_hidden: 96
+
+optimizer_type: Adam
+use_scheduler: False
+l2_decay: 1e-5
+gradClipNorm: 10
+momentum: 0.9
+nesterov: False
+stepSize: 4000
+gamma: 0.1
+
+numWorkers: 0
+
+# lightning
+accelerator: gpu
+devices: 1
+precision: 32

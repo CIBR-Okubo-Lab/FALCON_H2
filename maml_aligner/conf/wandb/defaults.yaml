@@ -1,0 +1,7 @@
+---
+enabled: True
+setup:
+    project: H2_meta
+    entity: okubo-lab
+    group: align
+    mode: online

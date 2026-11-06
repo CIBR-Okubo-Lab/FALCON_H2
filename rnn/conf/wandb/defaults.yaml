@@ -1,0 +1,7 @@
+---
+enabled: True
+setup:
+    project: H2_rnn
+    entity:
+    group: improved_joint_training
+    mode: online
