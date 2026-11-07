@@ -47,7 +47,7 @@ class GRUDecoder(pl.LightningModule):
         self.kernelLen = kernelLen
         self.gaussianSmoothWidth = gaussianSmoothWidth
         self.bidirectional = bidirectional
-        #self.inputLayerNonlinearity = torch.nn.Softsign()
+        self.inputLayerNonlinearity = torch.nn.Softsign()
         self.unfolder = torch.nn.Unfold(
             (self.kernelLen, 1), dilation=1, padding=0, stride=self.strideLen
         )
@@ -121,7 +121,7 @@ class GRUDecoder(pl.LightningModule):
         transformedNeural = torch.einsum(
             "btd,bdk->btk", neuralInput, dayWeights
         ) + torch.index_select(self.dayBias, 0, dayIdx)
-        #transformedNeural = self.inputLayerNonlinearity(transformedNeural)
+        transformedNeural = self.inputLayerNonlinearity(transformedNeural)
 
         # stride/kernel
         stridedInputs = torch.permute(

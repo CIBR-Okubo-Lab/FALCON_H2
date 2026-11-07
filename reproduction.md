@@ -203,7 +203,7 @@ cd maml_aligner/
 #   pretrain: /path/to/run_20250908-101130/modelWeights
 #   single_layer: True   # for linear aligner
 #   single_layer: False  # for 2-layer aligner
-#   align_hidden: 92     # hidden size for 2-layer aligner
+#   align_hidden: 96     # hidden size for 2-layer aligner
 
 # Run training
 python neural_decoder_trainer.py
