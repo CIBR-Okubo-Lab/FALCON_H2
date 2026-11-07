@@ -66,6 +66,7 @@ Contains the core training scripts and model definitions:
 | `neural_decoder_trainer.py` | Trains both the **Stage 1 session-agnostic GRU backbone** and the **conventional model with session-specific layers** (switch import to use `model_no_daylayer` or `model` / `model_linear`) | Sec 3.2, 3.3.1, Appendix B.1, C |
 | `joint_aligner_trainer.py` | Trains the **Pooled-training Aligner** — initializes from a Stage 1 backbone, freezes the GRU, and trains an aligner on all held-in sessions pooled together | Appendix F.1 (pooled-training baseline) |
 | `formatData_remote.ipynb` | Data preprocessing notebook — converts raw NWB files (DANDI 000950) into pickle format expected by training scripts | |
+| `formatData_local.ipynb` | Local validation split for Figure 4: sessions 1–18 as local held-in and sessions 19–21 as local held-out (`[:18]` / `[18:]` on the sorted held-in files) | Figure 4 |
 | `neural_decoder/` | Core modules | |
 | ├ `model_no_daylayer.py` | `GRUDecoder` — Stage 1 session-agnostic backbone (no session-specific layer) | |
 | ├ `model.py` | **Conventional model**: GRU with session-specific input layers (affine + softsign), jointly trained | Sec 3.2 |

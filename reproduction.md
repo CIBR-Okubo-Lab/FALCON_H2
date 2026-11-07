@@ -418,7 +418,7 @@ MAML training takes ~40 hours (single GPU) because inner-loop updates are sequen
 
 ### Q: How do I change the local validation split?
 
-The default local validation split uses sessions 1–18 as local held-in and sessions 19–21 as local held-out (Figure 4). This is set during data preprocessing; see the original data-processing code.
+The default local validation split uses sessions 1–18 as local held-in and sessions 19–21 as local held-out (Figure 4). This is set in `rnn/formatData_local.ipynb` by slicing the sorted held-in files with `[:18]` and `[18:]`.
 
 ---
 
